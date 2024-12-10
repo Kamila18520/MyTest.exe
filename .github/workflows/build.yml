@@ -28,7 +28,7 @@ jobs:
 
       - name: Build .exe using pyinstaller
         run: |
-          pyinstaller --onefile --noconsole project.py
+          pyinstaller.exe --onefile --noconsole main.py
 
       - name: Upload .exe to GitHub
         uses: actions/upload-artifact@v3

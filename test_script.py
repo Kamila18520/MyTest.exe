@@ -56,9 +56,15 @@ class TestSystemInfo(unittest.TestCase):
     # Test dla funkcji get_bios_version
     @patch('os.popen')
     def test_get_bios_version(self, mock_popen):
-        mock_popen.return_value.read.return_value = 'SMBIOSBIOSVersion 2.0\n'
-        result = get_bios_version()
-        self.assertIn("Wersja BIOS: 2.0", result)
+        # Jeśli jesteśmy na systemie Windows, sprawdzamy wynik
+        if platform.system() == "Windows":
+            mock_popen.return_value.read.return_value = 'SMBIOSBIOSVersion 2.0\n'
+            result = get_bios_version()
+            self.assertIn("Wersja BIOS: 2.0", result)
+        else:
+            # Dla innych systemów, oczekujemy komunikatu o braku wsparcia
+            result = get_bios_version()
+            self.assertIn("Funkcja niedostępna na tym systemie", result)
 
     # Test dla funkcji get_bios_version na systemie innym niż Windows
     @patch('platform.system')

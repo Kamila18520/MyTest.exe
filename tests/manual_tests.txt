@@ -1,0 +1,25 @@
+Testowanie manualne aplikacji MyTest
+
+1. Cel testu:
+   - Sprawdzenie poprawności działania UI oraz funkcji aplikacji.
+   - Testowanie wszystkich przycisków i funkcji związanych z uzyskiwaniem informacji o systemie, proxy, IPv4, BIOS itp.
+
+2. Plan testów:
+   - Testowanie działania przycisków.
+   - Testowanie reakcji aplikacji na poprawne i błędne dane wejściowe.
+   - Testowanie wyświetlania danych na UI.
+
+3. Zadania testowe:
+   - Uruchom aplikację.
+   - Kliknij przyciski i sprawdź, czy dane są wyświetlane w `text_view`.
+   - Testuj, co się stanie, gdy wprowadzisz błędne dane lub brakujące informacje.
+
+4. Raporty o błędach:
+
+Błąd 1: Przycisk „Bios” nie wyświetlał informacji o wersji ani komunikatu o błędzie w przypadku problemów z pobieraniem danych.
+
+Rozwiązanie: Poprawiono funkcję get_bios_version, która wcześniej zwracała tylko jedną linię z nagłówkiem.
+Teraz funkcja zwraca także drugą linię, zawierającą rzeczywistą wersję BIOS-u.
+
+5. Wnioski:
+   - Aplikacja działa zgodnie z oczekiwaniami przy większości testów. Wymaga poprawek w obszarze obsługi błędów.

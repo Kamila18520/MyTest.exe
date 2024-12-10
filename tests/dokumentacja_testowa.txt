@@ -1,0 +1,49 @@
+1. Cele jakościowe testów
+Weryfikacja poprawności działania aplikacji.
+
+Weryfikować poprawność zwracanych danych przez funkcje, takie jak adres IP, informacje o systemie, proxy, wersja BIOS.
+
+
+2. Potrzebne zasoby
+Środowisko programistyczne: PyCharm.
+Biblioteki: unittest, os, psutil, socket, PyQt5, pytest
+Dostęp do systemu operacyjnego: Testy będą wykonywane na systemie Windows 10
+Testowane funkcje: Funkcje takie jak get_ipv4_info(), get_proxy_info(), get_system_info(), get_bios_version(), get_hostname().
+
+3. Zlecenia
+Przygotowanie środowiska testowego (zainstalowanie bibliotek i aplikacji).
+Uruchomienie aplikacji w różnych konfiguracjach systemowych.
+Testowanie aplikacji przy użyciu skryptów automatycznych (w tym mockowanie wyników systemowych).
+Dokumentowanie wyników testów oraz zgłaszanie błędów.
+
+4. Lista zadań testowych
+Test 1: Funkcja get_ipv4_info()
+
+Sprawdzenie, czy funkcja poprawnie zwraca adres IPv4 na podstawie hosta.
+Testowanie błędów w przypadku braku dostępu do internetu.
+Test 2: Funkcja get_proxy_info()
+
+Sprawdzenie, czy funkcja zwraca prawidłowe dane dotyczące proxy.
+Testowanie sytuacji, gdy brak jest ustawionego proxy.
+Test 3: Funkcja get_system_info()
+
+Testowanie, czy funkcja zwraca poprawne informacje o systemie (wersja, procesor, pamięć, liczba rdzeni).
+Sprawdzanie na różnych systemach operacyjnych.
+Test 4: Funkcja get_bios_version()
+
+Testowanie, czy funkcja poprawnie zwraca wersję BIOS, zwłaszcza na systemach Windows.
+Sprawdzanie, jak funkcja reaguje w systemach, które nie wspierają wmic (np. Linux).
+Test 5: Funkcja get_hostname()
+
+Testowanie poprawności zwracanej nazwy hosta.
+7. Raporty o błędach
+Błąd w teście test_get_bios_version:
+
+Opis błędu: Funkcja get_bios_version nie zwróciła oczekiwanej wersji BIOS, a zamiast tego zwróciła komunikat o błędzie: "Nie udało się odczytać wersji BIOSu".
+Przyczyna: Funkcja może nie być w stanie pobrać wersji BIOS w systemach, które nie wspierają komendy wmic (np. Linux). Test nie uwzględniał tej sytuacji w odpowiedni sposób.
+Zalecenia: Zmodyfikować test, aby poprawnie obsługiwał systemy, które nie wspierają funkcji wmic.
+8. Wyniki pomiarów, dane statystyczne i podsumowanie
+Testy jednostkowe zakończyły się 5 poprawnymi wynikami, a 1 test zakończył się niepowodzeniem.
+Zidentyfikowano problem w funkcji get_bios_version, który wymaga poprawek w sposobie testowania.
+Wartości zwracane przez funkcje są poprawne w większości testów, ale nie uwzględniono specyficznych przypadków, takich jak brak wsparcia dla wmic.
+Podsumowanie: Aplikacja działa zgodnie z oczekiwaniami w większości przypadków, ale wymaga poprawek w obsłudze funkcji systemowych na różnych platformach.
