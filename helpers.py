@@ -27,11 +27,20 @@ def get_system_info():
             f"Rdzenie CPU: {cores}\n"
             f"Pamięć RAM: {memory} MB")
 
+
 def get_bios_version():
     try:
         if platform.system() == "Windows":
+            # Uruchamiamy komendę WMIC i odczytujemy wynik
             output = os.popen("wmic bios get smbiosbiosversion").read()
-            return f"Wersja BIOS: {output.splitlines()[1]}"
+            # Usuwamy puste linie i dodatkowe białe znaki
+            bios_version = [line.strip() for line in output.splitlines() if line.strip()]
+
+            if len(bios_version) > 1:
+                # Zwracamy wersję BIOSu, zwracamy tylko drugą linię, bo pierwsza to nagłówek
+                return f"Wersja BIOS: {bios_version[1]}"
+            else:
+                return "Nie udało się odczytać wersji BIOSu"
         else:
             return "Funkcja niedostępna na tym systemie"
     except Exception as e:
